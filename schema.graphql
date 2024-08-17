@@ -1,0 +1,45 @@
+type SkillExchangeAccepted @entity(immutable: true) {
+  id: Bytes!
+  SkillSwap_id: BigInt! # uint256
+  offerer: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type SkillExchangeCompleted @entity(immutable: true) {
+  id: Bytes!
+  SkillSwap_id: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type SkillExchangePosted @entity(immutable: true) {
+  id: Bytes!
+  SkillSwap_id: BigInt! # uint256
+  requester: Bytes! # address
+  skillOffered: String! # string
+  skillRequested: String! # string
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type UserRated @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  reputation: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type UserRegistered @entity(immutable: true) {
+  id: Bytes!
+  userAddress: Bytes! # address
+  userName: String! # string
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}

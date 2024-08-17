@@ -1,0 +1,38 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: SkillSwap
+    network: celo-alfajores
+    source:
+      address: "0xEc7A1579C02bcaA2EDFf36Dc73F62Bb80f98750D"
+      abi: SkillSwap
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - SkillExchangeAccepted
+        - SkillExchangeCompleted
+        - SkillExchangePosted
+        - UserRated
+        - UserRegistered
+      abis:
+        - name: SkillSwap
+          file: ./abis/SkillSwap.json
+      eventHandlers:
+        - event: SkillExchangeAccepted(uint256,address)
+          handler: handleSkillExchangeAccepted
+        - event: SkillExchangeCompleted(uint256)
+          handler: handleSkillExchangeCompleted
+        - event: SkillExchangePosted(uint256,address,string,string)
+          handler: handleSkillExchangePosted
+        - event: UserRated(address,uint256)
+          handler: handleUserRated
+        - event: UserRegistered(address,string)
+          handler: handleUserRegistered
+      file: ./src/skill-swap.ts
